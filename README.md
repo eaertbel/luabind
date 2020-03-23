@@ -45,6 +45,10 @@ fork). Thus, feel free to do the same with my fork.
 In the following two sections, the improvements over the latest official
 luabind release (0.9) are described.
 
+eaertbel forked this from ValyriaTear/luabind and added a few small changes 
+to allow for a better modularisation using CMake subprojects.  CMake 3.5 is
+now required.
+
 ### Fixed bugs ###
 
 * Destroyed objects now have their metatable unset. Previously, one could
