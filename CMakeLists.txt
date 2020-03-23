@@ -3,7 +3,7 @@
 # http://academic.cleardefinition.com/
 # Iowa State University HCI Graduate Program/VRAC
 
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.5)
 set(CMAKE_LEGACY_CYGWIN_WIN32 0) # Remove when CMake >= 2.8.4 is required
 project(LuaBind)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -58,7 +58,7 @@ else()
     message("MSVC < 11 (2012) detected, C++11 disabled.")
 endif()
 
-if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+#if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     # We are the top-level project
     option(LUABIND_INSTALL "Install the LuaBind library and headers" ON)
     option(LUABIND_APPEND_VERSION_SUFFIX "Append a version suffix to the library name (like luabind09)?" ON)
@@ -99,7 +99,7 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
         option(LUABIND_NO_STD_SHARED_PTR "Indicates that your standard library lacks C++11 shared_ptr in std namespace" ON)
     endif()
 
-endif()
+#endif()
 
 if(LUABIND_NO_STD_SHARED_PTR)
     add_definitions(-DLUABIND_NO_STD_SHARED_PTR)
@@ -224,14 +224,14 @@ else()
     endif()
 endif()
 
-include_directories(BEFORE
-    "${CMAKE_CURRENT_SOURCE_DIR}"
-    "${CMAKE_CURRENT_BINARY_DIR}")
-include_directories(AFTER
-    ${Boost_INCLUDE_DIRS}
-    ${LUA_INCLUDE_DIRS})
-
 add_subdirectory(src)
+target_include_directories(luabind 
+    PUBLIC
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+    "${CMAKE_CURRENT_BINARY_DIR}"
+    "${Boost_INCLUDE_DIRS}"
+    "${LUA_INCLUDE_DIRS}")
+
 
 # Set up testing and documentation, only if we are the top-level project.
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)

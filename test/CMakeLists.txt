@@ -69,6 +69,7 @@ add_library(test_main STATIC
     # These tests consist only of compile time asserts and define no test_main
     # function:
     test_has_get_pointer.cpp)
+target_link_libraries(test_main luabind)
 
 if (BUILD_SHARED_LIBS AND MSVC)
     add_custom_command(TARGET test_main POST_BUILD
@@ -79,7 +80,7 @@ endif()
 
 foreach(test ${TESTS})
     add_executable(test_${test} test_${test}.cpp)
-    target_link_libraries(test_${test} test_main luabind)
+    target_link_libraries(test_${test} test_main)
     add_test(NAME ${test} COMMAND test_${test})
     set_property(TARGET test_${test} PROPERTY FOLDER "Tests")
 endforeach()
