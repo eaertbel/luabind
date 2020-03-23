@@ -41,9 +41,9 @@ namespace {
 
 struct base : counted_type<base>
 {
-    base(): n(4) {}
+    base(): counted_type<base>(),n(4) {}
     virtual ~base() {}
-    base(base const& rhs): n(rhs.n) {}
+    base(base const& rhs): counted_type<base>(),n(rhs.n) {}
 
     void f(int)
     {
@@ -57,7 +57,7 @@ struct first_base : counted_type<first_base>
 {
     virtual ~first_base() {}
     first_base(): padding(0xdead) {}
-    first_base(first_base const& rhs): padding(rhs.padding) {}
+    first_base(first_base const& rhs): counted_type<first_base>(),padding(rhs.padding) {}
     virtual void a() {}
     int padding;
 };
