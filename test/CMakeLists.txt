@@ -81,7 +81,7 @@ endif()
 foreach(test ${TESTS})
     add_executable(test_${test} test_${test}.cpp)
     target_link_libraries(test_${test} test_main)
-    add_test(NAME ${test} COMMAND test_${test})
+    add_test(NAME "${PROJECT_NAME}::${test}" COMMAND test_${test})
     set_property(TARGET test_${test} PROPERTY FOLDER "Tests")
 endforeach()
 

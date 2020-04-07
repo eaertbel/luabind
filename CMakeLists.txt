@@ -234,13 +234,13 @@ target_include_directories(luabind
 
 
 # Set up testing and documentation, only if we are the top-level project.
-if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+#if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     include(CTest)
     if(BUILD_TESTING)
         add_subdirectory(test)
     endif()
     add_subdirectory(doc)
-endif()
+#endif()
 
 if(LUABIND_INSTALL)
     if(WIN32 AND NOT CYGWIN)
