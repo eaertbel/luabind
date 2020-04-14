@@ -128,6 +128,8 @@ endif()
 
 set(CMAKE_DEBUG_POSTFIX "-d")
 add_library(luabind ${LUABIND_SRCS} ${LUABIND_API} ${LUABIND_DETAIL_API})
+add_library(etasl::luabind ALIAS luabind)
+
 target_link_libraries(luabind ${LUA_LIBRARIES} ${LUABIND_EXTRA_LIBS} ${CMAKE_DL_LIBS})
 set_property(TARGET
     luabind PROPERTY
@@ -179,7 +181,7 @@ if(LUABIND_INSTALL)
         DESTINATION ${INCLUDE_DIR}/luabind/detail
         COMPONENT sdk)
     install(TARGETS luabind
-        EXPORT luabind
+        EXPORT etaslTARGETS 
         RUNTIME DESTINATION ${BIN_DIR} COMPONENT runtime
         LIBRARY DESTINATION ${LIB_DIR} COMPONENT runtime
         ARCHIVE DESTINATION ${ARCH_DIR} COMPONENT sdk)

@@ -225,10 +225,12 @@ else()
 endif()
 
 add_subdirectory(src)
+
 target_include_directories(luabind 
     PUBLIC
-    "${CMAKE_CURRENT_SOURCE_DIR}"
-    "${CMAKE_CURRENT_BINARY_DIR}"
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+    $<INSTALL_INTERFACE:include>
     "${Boost_INCLUDE_DIRS}"
     "${LUA_INCLUDE_DIRS}")
 
@@ -247,8 +249,8 @@ if(LUABIND_INSTALL)
         set(INSTALL_CMAKE_DIR CMake)
         set(INSTALL_CMAKE_DIR_LUA CMake)
     else()
-        set(INSTALL_CMAKE_DIR lib/CMake/Luabind)
-        set(INSTALL_CMAKE_DIR_LUA lib/CMake/Lua52)
+        set(INSTALL_CMAKE_DIR lib/cmake/Luabind)
+        set(INSTALL_CMAKE_DIR_LUA lib/cmake/Lua52)
     endif()
     install(FILES "cmake/Modules/FindLuabind.cmake" DESTINATION ${INSTALL_CMAKE_DIR})
     install(FILES "cmake/Modules/FindLua52.cmake" DESTINATION ${INSTALL_CMAKE_DIR_LUA})
