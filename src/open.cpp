@@ -120,6 +120,9 @@ namespace
                 "lua_State*"
             );
         }
+        if (detail::class_registry::get_registry(L))
+            return;
+
 
         push_gc_udata<detail::class_registry>(L, &detail::classes_tag, L);
         push_gc_udata<detail::class_id_map>(L, &detail::classid_map_tag);
