@@ -183,9 +183,9 @@ else()
             Wshadow
             Wsign-promo
             Wstrict-null-sentinel
-            Wstrict-overflow=5)
-
-
+            Wstrict-overflow=5
+            Wno-cast-function-type 
+            Wno-sign-conversion)
         if(LUABIND_USE_CXX11)
             list(APPEND possible_flags Wnoexcept)
         endif()
