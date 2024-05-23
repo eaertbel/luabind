@@ -51,6 +51,8 @@ if(NOT MSVC)
     else()
         message("Compiler does not support -std=c++11 flag, C++11 disabled.")
     endif()
+    add_compile_options(-Wno-strict-overflow)       # added by EA
+    add_compile_options(-Wno-maybe-uninitialized)   # added by EA
 elseif(MSVC_VERSION GREATER 1699) # 1700 = VS 11 (2012)
     set (LUABIND_HAS_CXX11 ON)
 else()
